@@ -1,5 +1,4 @@
-// had to start over since I added things that didnt need to be added//
-
+// courseinfo provided///
 const CourseInfo = {
     id: 451,
     name: "Introduction to JavaScript"
@@ -77,8 +76,7 @@ const CourseInfo = {
     }
   ];
   
-
-  function getLearnerData(course, ag, submissions) {
+function getLearnerData(course, ag, submissions) {
     const result = {
         course_id: course.id,
         course_name: course.name,
@@ -92,35 +90,50 @@ const CourseInfo = {
             points_possible: assignment.points_possible,
             submissions: []
         };
-        submissions.forEach(submission => {
-            if (submission.assignment_id === assignment.id) {
-                assignmentInfo.submissions.push({
-                    learner_id: submission.learner_id,
-                    score: submission.submission.score,
-                    submitted_at: submission.submission.submitted_at
+
+let totalScore = 0;
+let submissionCount = 0;
+    submissions.forEach(submission => {
+        if (submissions.assignment_id === assignment.id){
+            assignmentInfo.submissions.push({
+                learner_id: submission.learner_id,
+                score: submission.submissions.score,
+                submitted_at: submission.submission.submitted_at
                 });
-            }
+                totalScore += submission.submission.score;
+                submissionCount++;
+                }
+            });
+
+         // Calculate average score for the assignment
+        if (submissionCount > 0) {
+            assignmentInfo.average_score = totalScore / submissionCount;
+        } else {
+            assignmentInfo.average_score = 0;
+        }  
+            result.assignments.push(assignmentInfo);
         });
-    
-    
-// return result;
+
+    return result;
+}
 
   
-// const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
+const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
   
-//   console.log(result);
-// //   make sure to include the above and then create a function that will pull and filter info from the above
-// const result = [
-//       {
-//         id: 125,
-//         avg: 0.985, // (47 + 150) / (50 + 150)
-//         1: 0.94, // 47 / 50
-//         2: 1.0 // 150 / 150
-//       },
-//       {
-//         id: 132,
-//         avg: 0.82, // (39 + 125) / (50 + 150)
-//         1: 0.78, // 39 / 50
-//         2: 0.833 // late: (140 - 15) / 150
-//       }
-// ]:
+  console.log(result);
+
+const result = [
+      {
+        id: 125,
+        avg: 0.985, // (47 + 150) / (50 + 150)
+        1: 0.94, // 47 / 50
+        2: 1.0 // 150 / 150
+      },
+      {
+        id: 132,
+        avg: 0.82, // (39 + 125) / (50 + 150)
+        1: 0.78, // 39 / 50
+        2: 0.833 // late: (140 - 15) / 150
+      }
+];
+
