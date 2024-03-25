@@ -13,16 +13,13 @@ const assignmentGroup = {
         { id: 1, name: "Assignment 1", due_at: "03.25.2024", points_possible: 100 },
         { id: 2, name: "Assignment 2", due_at: "04.01.2024", points_possible: 200 }
     ]
-};
-// console.log(assignments)
+};console.log(assignmentGroup.assignments)
 
 const learnerSubmissions = [
     { learner_id: 10, assignment_id: 1, submission: { submitted_at: "03.25.2024", score: 90 } },
     { learner_id: 10, assignment_id: 2, submission: { submitted_at: "03.30.2024", score: 180 } },
     { learner_id: 20, assignment_id: 1, submission: { submitted_at: "03.26.2024", score: 70 } },
     { learner_id: 20, assignment_id: 2, submission: { submitted_at: "04.01.2024", score: 90 } },
-
-
 ];
 
  // To calculate weighted average
@@ -39,7 +36,7 @@ function getLearnerData(courseInfo, assignmentGroup, learnerSubmissions) {
         return totalWeight > 0 ? totalScore / totalWeight : 0;
     }
 
-console.log(totalWeight)
+// console.log(totalWeight)
 
 
 
@@ -66,64 +63,4 @@ console.log(totalWeight)
   
 //   const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
   
-//   console.log(result);
-// --------------------------------------------------------------------
-  
-
-
-  
-
-{
-    // the ID of the learner for which this data has been collected
-    "id": number,
-    // the learner’s total, weighted average, in which assignments
-    // with more points_possible should be counted for more
-    // e.g. a learner with 50/100 on one assignment and 190/200 on another
-    // would have a weighted average score of 240/300 = 80%.
-    "avg": number,
-    // each assignment should have a key with its ID,
-    // and the value associated with it should be the percentage that
-    // the learner scored on the assignment (submission.score / points_possible)
-    <assignment_id>: number,
-    {/* // if an assignment is not yet due, it should not be included in either */}
-    {/* // the average or the keyed dictionary of scores */}
-}
-
-
-// function getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions) {
-   
-   
-//     const learnerArray = [{}, {}]; // Initialize an array with two empty objects to store the results
-  
-//     // Learner ID's for each
-//     for (let i = 0; i < LearnerSubmissions.length; i++) {
-//       const submission = LearnerSubmissions[i];
-  
-//       if (submission.learner_id === 125) {
-//         learnerArray[0]["id"] = submission.learner_id;
-//       }
-//       if (submission.learner_id === 132) {
-//         learnerArray[1]["id"] = submission.learner_id;
-//       }
-//     }
-  
-//     // Calculate average score for each learner
-//     for (let i = 0; i < LearnerSubmissions.length; i++) {
-//       const submission = LearnerSubmissions[i];
-//       const assignment = AssignmentGroup.assignments[0,1];
-  
-//       if (assignment && (assignment.id === 1 || assignment.id === 2)) {
-//         if (submission.learner_id === 125) {
-//           learnerArray[0]["avg"] = ((learnerArray[0]["avg"] || 0) + submission.submission.score) / 2;
-//         }
-//         if (submission.learner_id === 132) {
-//           learnerArray[1]["avg"] = ((learnerArray[1]["avg"] || 0) + submission.submission.score) / 2;
-//         }
-//       }
-//     }
-  
-//     return learnerArray;
-//   }
-  
-//   const learnerArray = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
-//   console.log(learnerArray);
+//   console.log(result)
