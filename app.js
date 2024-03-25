@@ -77,27 +77,50 @@ const CourseInfo = {
     }
   ];
   
+
   function getLearnerData(course, ag, submissions) {
-    // here, we would process this data to achieve the desired result.
+    const result = {
+        course_id: course.id,
+        course_name: course.name,
+        assignments: []
+    };
+    ag.assignments.forEach(assignment => {
+        const assignmentInfo = {
+            id: assignment.id,
+            name: assignment.name,
+            due_at: assignment.due_at,
+            points_possible: assignment.points_possible,
+            submissions: []
+        };
+        submissions.forEach(submission => {
+            if (submission.assignment_id === assignment.id) {
+                assignmentInfo.submissions.push({
+                    learner_id: submission.learner_id,
+                    score: submission.submission.score,
+                    submitted_at: submission.submission.submitted_at
+                });
+            }
+        });
+    
+    
+// return result;
+
   
-    return result;
-  }
+// const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
   
-  const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
-  
-  console.log(result);
-  make sure to include the above and then create a function that will pull and filter info from the above
-  const result = [
-      {
-        id: 125,
-        avg: 0.985, // (47 + 150) / (50 + 150)
-        1: 0.94, // 47 / 50
-        2: 1.0 // 150 / 150
-      },
-      {
-        id: 132,
-        avg: 0.82, // (39 + 125) / (50 + 150)
-        1: 0.78, // 39 / 50
-        2: 0.833 // late: (140 - 15) / 150
-      }
-    ];
+//   console.log(result);
+// //   make sure to include the above and then create a function that will pull and filter info from the above
+// const result = [
+//       {
+//         id: 125,
+//         avg: 0.985, // (47 + 150) / (50 + 150)
+//         1: 0.94, // 47 / 50
+//         2: 1.0 // 150 / 150
+//       },
+//       {
+//         id: 132,
+//         avg: 0.82, // (39 + 125) / (50 + 150)
+//         1: 0.78, // 39 / 50
+//         2: 0.833 // late: (140 - 15) / 150
+//       }
+// ]:
